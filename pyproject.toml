@@ -23,6 +23,7 @@ dependencies = [
     "rich<12.0",
     "tenacity>=8.2.2",
     "tyro>=0.5.10",
+    "envpool>=0.6.6",
 ]
 
 [project.optional-dependencies]

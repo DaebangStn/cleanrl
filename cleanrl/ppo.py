@@ -206,6 +206,14 @@ if __name__ == "__main__":
             next_done = np.logical_or(terminations, truncations)
             rewards[step] = torch.tensor(reward).to(device).view(-1)
             next_obs, next_done = torch.Tensor(next_obs).to(device), torch.Tensor(next_done).to(device)
+            
+            # https://github.com/DLR-RM/stable-baselines3/pull/658
+            for idx, trunc in enumerate(truncations):
+                if trunc and not terminations[idx]:
+                    real_next_obs = infos["final_observation"][idx]
+                    with torch.no_grad():
+                        terminal_value = agent.get_value(torch.Tensor(real_next_obs).to(device)).reshape(1, -1)[0][0]
+                    rewards[step][idx] += args.gamma * terminal_value
 
             if "final_info" in infos:
                 for info in infos["final_info"]:

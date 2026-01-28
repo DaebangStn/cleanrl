@@ -336,6 +336,7 @@ name = "cleanrl"
 version = "2.0.0b1"
 source = { editable = "." }
 dependencies = [
+    { name = "envpool" },
     { name = "gym" },
     { name = "gymnasium" },
     { name = "huggingface-hub" },
@@ -418,6 +419,7 @@ requires-dist = [
     { name = "boto3", marker = "extra == 'cloud'", specifier = ">=1.24.70,<2" },
     { name = "chex", marker = "extra == 'jax'", specifier = "==0.1.5" },
     { name = "dm-control", marker = "extra == 'dm-control'", specifier = ">=1.0.10" },
+    { name = "envpool", specifier = ">=0.6.6" },
     { name = "envpool", marker = "extra == 'envpool'", specifier = ">=0.6.4,<0.7" },
     { name = "flax", marker = "extra == 'jax'", specifier = "==0.6.8" },
     { name = "gym", specifier = "==0.23.1" },
